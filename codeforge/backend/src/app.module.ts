@@ -23,6 +23,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  controllers: [HealthController, HealthController],
+  controllers: [HealthController],
 })
 export class AppModule {}
