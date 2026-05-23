@@ -3,6 +3,31 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthController } from './health/health.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+/*
+ConfigModule.forRoot()
+- loads .env values into Node.js process.env
+- registers ConfigService in NestJS DI container
+- isGlobal: true → ConfigService available across app without repeated imports
+
+TypeOrmModule.forRootAsync()
+- dynamically creates DB configuration during app startup
+
+inject: [ConfigService]
+- DI container injects ConfigService into useFactory()
+
+useFactory()
+- factory function that returns DB configuration object
+
+configService.get()
+- reads environment variables from process.env/.env
+
+autoLoadEntities: true
+- automatically loads DB entities/models
+
+synchronize: true
+- auto-sync DB tables with entities (development only)
+*/
+
 @Module({
   imports: [
     ConfigModule.forRoot({
