@@ -51,13 +51,17 @@ Receive GitHub Pull Request events and display them on dashboard.
 
 Flow:
 
-GitHub PR
-↓
-NestJS Webhook
-↓
-PostgreSQL
-↓
-Next.js Dashboard
+```mermaid
+flowchart TD
+    A[GitHub Pull Request Event]
+    B[NestJS Webhook API]
+    C[PostgreSQL Store]
+    D[Next.js Dashboard]
+
+    A --> B
+    B --> C
+    C --> D
+```
 
 ---
 
