@@ -1,3 +1,37 @@
+# Docker helps us run project dependencies like PostgreSQL and Redis
+# in isolated container environments instead of installing everything
+# directly on the local machine.
+#
+# Benefits:
+# - avoids version conflicts between projects
+# - allows multiple projects to use different DB/Redis versions
+# - prevents local environment pollution
+# - keeps setup reproducible across machines
+# - avoids port/configuration conflicts
+# - makes onboarding easy using:
+#     docker compose up -d
+#
+# Example:
+# Project A → postgres:14
+# Project B → postgres:16
+#
+# Both can run independently using containers.
+#
+# Port Mapping:
+# HOST_PORT : CONTAINER_PORT
+#
+# Example:
+# 5433:5432
+#
+# localhost:5433 on Mac
+#        ↓
+# postgres container internally listening on 5432
+#
+# PostgreSQL internally listens on 5432 by default.
+# We expose it as 5433 externally to avoid conflict
+# with local PostgreSQL already using 5432.
+
+# Use Compose specification version 3.9
 version: "3.9"
 
 services:
