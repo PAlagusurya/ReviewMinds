@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthController } from './health/health.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 /*
 ConfigModule.forRoot()
@@ -47,6 +48,7 @@ synchronize: true
         synchronize: true,
       }),
     }),
+    AuthModule,
   ],
   controllers: [HealthController],
 })
