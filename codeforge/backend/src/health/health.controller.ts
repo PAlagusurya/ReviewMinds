@@ -1,4 +1,7 @@
+import { InjectQueue } from '@nestjs/bullmq';
 import { Controller, Get } from '@nestjs/common';
+import { Queue } from 'bullmq';
+import { QUEUES } from 'src/bull/constants';
 
 /** Decorator is a special annotation using `@` that adds metadata or special behavior to classes/methods.
 Frameworks like NestJS use decorators to automatically understand routes, services, modules, etc. */
@@ -28,11 +31,24 @@ Same class name is used as:
 
 @Controller('health')
 export class HealthController {
+  constructor(@InjectQueue(QUEUES.ANALYZE_PR) private readonly queue: Queue) {}
+
   @Get()
   getHealth() {
     return {
       status: 'ok',
       service: 'backend',
     };
+  }
+
+  @Get('test-queue')
+  async testQueue() {
+    await this.queue.add(QUEUES.ANALYZE_PR, {
+      prNumber: 111,
+      repoFullName: 'Asurya/repo',
+      headSha: 'abc123',
+    });
+
+    return { message: 'Job added to queue' };
   }
 }
