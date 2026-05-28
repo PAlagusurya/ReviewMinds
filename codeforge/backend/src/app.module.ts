@@ -3,6 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthController } from './health/health.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { BullCoreModule } from './bull/bull-core.module';
+import { HealthModule } from './health/health.module';
+import { BullQueueModule } from './bull/bull-queue.module';
+import { WorkerModule } from './worker/worker.module';
 
 /*
 ConfigModule.forRoot()
@@ -50,6 +54,10 @@ synchronize: true
       }),
     }),
     AuthModule,
+    BullCoreModule,
+    BullQueueModule,
+    HealthModule,
+    WorkerModule,
   ],
   controllers: [HealthController],
 })
