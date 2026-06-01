@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+
+# NestJS / TypeScript
+dist/
+
+# Environment Variables
+.env
+
+# Logs
+logs/
+*.log
+
+# OS Files
+.DS_Store
+
+# IDE
+.vscode/
+
+github-app.private-key.pem
