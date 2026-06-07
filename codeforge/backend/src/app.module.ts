@@ -1,3 +1,4 @@
+import { LoggerModule } from './logger/logger.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthController } from './health/health.controller';
@@ -37,7 +38,7 @@ synchronize: true
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '../.env',
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
@@ -58,6 +59,7 @@ synchronize: true
     BullQueueModule,
     HealthModule,
     WorkerModule,
+    LoggerModule,
   ],
   controllers: [HealthController],
 })
