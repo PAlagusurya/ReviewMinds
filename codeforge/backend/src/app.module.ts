@@ -8,6 +8,8 @@ import { BullCoreModule } from './bull/bull-core.module';
 import { HealthModule } from './health/health.module';
 import { BullQueueModule } from './bull/bull-queue.module';
 import { WorkerModule } from './worker/worker.module';
+import { PrsModule } from './prs/prs.module';
+import { PrsController } from './prs/prs.controller';
 
 /*
 ConfigModule.forRoot()
@@ -60,6 +62,7 @@ synchronize: true
     HealthModule,
     WorkerModule,
     LoggerModule,
+    PrsModule,
   ],
   controllers: [HealthController],
 })
