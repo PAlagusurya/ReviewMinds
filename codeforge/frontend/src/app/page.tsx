@@ -30,7 +30,7 @@ export default function HomePage() {
 
         {/* GitHub OAuth button */}
         <a
-          href="http://localhost:3000/auth/github"
+          href="http://localhost:3333/auth/github"
           className="inline-flex items-center gap-3 bg-white text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-100 transition-colors w-full justify-center text-sm"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
