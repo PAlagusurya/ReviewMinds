@@ -1,6 +1,6 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import type { RequestWithUser } from './auth.type';
+import type { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -10,10 +10,7 @@ export class AuthController {
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  githubAuthCallback(@Req() req: RequestWithUser) {
-    return {
-      message: 'GitHub login successful',
-      user: req.user,
-    };
+  githubAuthCallback(@Req() req: any, @Res() res: Response) {
+    res.redirect('http://localhost:3000/dashboard');
   }
 }
