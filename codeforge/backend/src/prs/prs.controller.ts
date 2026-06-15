@@ -13,6 +13,23 @@ export class PrsController {
       data: prs,
     };
   }
+
+  @Get('analyses/:analysisId/findings')
+  async findFindings(
+    @Param('analysisId')
+    analysisId: string,
+  ) {
+    const analysis = await this.prsService.findAnalysis(analysisId);
+
+    if (!analysis) {
+      throw new NotFoundException('Analysis not found');
+    }
+
+    return {
+      data: analysis.analyses,
+    };
+  }
+
   @Get(':prNumber')
   async findByPrNumber(@Param('prNumber') prNumber: string) {
     const analyses = await this.prsService.findByPrNumber(Number(prNumber));
@@ -34,22 +51,6 @@ export class PrsController {
           createdAt: a.createdAt,
         })),
       },
-    };
-  }
-
-  @Get('analyses/:analysisId/findings')
-  async findFindings(
-    @Param('analysisId')
-    analysisId: string,
-  ) {
-    const analysis = await this.prsService.findAnalysis(analysisId);
-
-    if (!analysis) {
-      throw new NotFoundException('Analysis not found');
-    }
-
-    return {
-      data: analysis.analyses,
     };
   }
 }
